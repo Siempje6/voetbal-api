@@ -2,23 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoetballerController;
-use App\Http\Controllers\ClubController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Hier worden de webroutes voor je applicatie geregistreerd.
-|
-*/
 
-// Startpagina: index met 2 kolommen
+
 Route::get('/', function () {
-    return view('index');  // index.blade.php met knoppen naar Voetballers en Clubs
+    return view('index');  
 })->name('home');
 
-// Routes voor Voetballers
 Route::get('/voetballers', [VoetballerController::class, 'index'])->name('voetballers.index');
 Route::get('/voetballers/create', [VoetballerController::class, 'create'])->name('voetballers.create');
 Route::post('/voetballers', [VoetballerController::class, 'store'])->name('voetballers.store');
@@ -27,11 +17,13 @@ Route::get('/voetballers/{id}/edit', [VoetballerController::class, 'edit'])->nam
 Route::put('/voetballers/{id}', [VoetballerController::class, 'update'])->name('voetballers.update');
 Route::delete('/voetballers/{id}', [VoetballerController::class, 'destroy'])->name('voetballers.destroy');
 
-// Routes voor Clubs
+use App\Http\Controllers\ClubController;
+
 Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
 Route::get('/clubs/create', [ClubController::class, 'create'])->name('clubs.create');
 Route::post('/clubs', [ClubController::class, 'store'])->name('clubs.store');
-Route::get('/clubs/{id}', [ClubController::class, 'show'])->name('clubs.show');
-Route::get('/clubs/{id}/edit', [ClubController::class, 'edit'])->name('clubs.edit');
-Route::put('/clubs/{id}', [ClubController::class, 'update'])->name('clubs.update');
-Route::delete('/clubs/{id}', [ClubController::class, 'destroy'])->name('clubs.destroy');
+Route::get('/clubs/{club}', [ClubController::class, 'show'])->name('clubs.show');
+Route::get('/clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit');
+Route::put('/clubs/{club}', [ClubController::class, 'update'])->name('clubs.update');
+Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('clubs.destroy');
+

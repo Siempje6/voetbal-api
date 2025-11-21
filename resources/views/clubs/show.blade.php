@@ -1,30 +1,20 @@
 @extends('layout')
 
 @section('content')
-<h1 class="mb-4">{{ $club->naam }} ({{ $club->stad }})</h1>
+<h1>{{ $club->naam }} ({{ $club->stad }})</h1>
 
-<h3>Spelers</h3>
-<table class="table table-striped table-bordered">
-    <thead class="table-dark">
-        <tr>
-            <th>Naam</th>
-            <th>Leeftijd</th>
-            <th>Positie</th>
-            <th>Acties</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($club->voetballers as $voetballer)
-        <tr>
-            <td>{{ $voetballer->naam }}</td>
-            <td>{{ $voetballer->leeftijd }}</td>
-            <td>{{ $voetballer->positie }}</td>
-            <td>
-                <a href="{{ route('voetballers.show', $voetballer->id) }}" class="btn btn-sm btn-primary">Bekijk</a>
-                <a href="{{ route('voetballers.edit', $voetballer->id) }}" class="btn btn-sm btn-warning">Bewerk</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<h3>Spelers in deze club:</h3>
+
+<ul class="list-group mb-4">
+    @forelse($club->voetballers as $speler)
+        <li class="list-group-item d-flex justify-content-between">
+            {{ $speler->naam }}
+            <a class="btn btn-sm btn-outline-primary" href="{{ route('voetballers.show', $speler->id) }}">Bekijk</a>
+        </li>
+    @empty
+        <li class="list-group-item">Geen spelers in deze club.</li>
+    @endforelse
+</ul>
+
+<a href="{{ route('clubs.index') }}" class="btn btn-secondary">Terug naar overzicht</a>
 @endsection

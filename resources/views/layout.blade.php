@@ -12,6 +12,9 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('voetballers.index') }}">Voetballers</a>
         <a class="btn btn-success" href="{{ route('voetballers.create') }}">+ Nieuwe Speler</a>
+        <a class="btn btn-success" href="{{ route('clubs.index') }}">Clubs</a>
+
+        
     </div>
 </nav>
 
