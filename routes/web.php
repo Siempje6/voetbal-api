@@ -8,6 +8,9 @@ use App\Http\Controllers\VoetballerController;
 Route::get('/', function () {
     return view('index');  
 })->name('home');
+use App\Http\Controllers\VoetbalController;
+
+Route::middleware('auth:sanctum')->get('/voetbal', [VoetbalController::class, 'getData']);
 
 Route::get('/voetballers', [VoetballerController::class, 'index'])->name('voetballers.index');
 Route::get('/voetballers/create', [VoetballerController::class, 'create'])->name('voetballers.create');
@@ -27,3 +30,5 @@ Route::get('/clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.e
 Route::put('/clubs/{club}', [ClubController::class, 'update'])->name('clubs.update');
 Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('clubs.destroy');
 
+
+Route::get('/test-voetbal', [VoetbalController::class, 'getData']);

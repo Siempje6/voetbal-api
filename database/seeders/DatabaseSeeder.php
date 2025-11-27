@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         foreach ($voetballers as $voetballer) {
             $voetballer->clubs()->attach($clubs->random(rand(1,2))->pluck('id')->toArray());
         }
+        $this->call(UserSeeder::class);
+
+
     }
 }
